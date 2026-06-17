@@ -17,6 +17,7 @@ Python was not installed directly on the computer. The application was executed 
 
 This API uses simple bearer-token authentication. The welcome message (`GET /`) and the login endpoint (`POST /login`) are public. All appointment-related endpoints require a valid bearer token.
 
+
 ### Test Account
 - Username: `admin`
 - Password: `clinic123`
@@ -42,6 +43,9 @@ The following endpoints require the bearer token (`Authorization: Bearer clinic-
 | DELETE | /appointments/{appointment_id} | Cancel an appointment |
 
 Requests without a token receive a `403 Not authenticated` response. Requests with an invalid or expired token receive a `401 Invalid or expired token` response.
+
+### Limitation
+This authentication setup uses a single hardcoded username, password, and token for instructional purposes only. It is **not** suitable for production. A real system would require secure password hashing, database-backed user accounts, token expiration, HTTPS, role-based access control, and audit logging.
 
 ## Technologies Used
 - Python
