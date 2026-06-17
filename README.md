@@ -47,6 +47,11 @@ Requests without a token receive a `403 Not authenticated` response. Requests wi
 ### Limitation
 This authentication setup uses a single hardcoded username, password, and token for instructional purposes only. It is **not** suitable for production. A real system would require secure password hashing, database-backed user accounts, token expiration, HTTPS, role-based access control, and audit logging.
 
+### Logout
+There is no real logout endpoint in this lab because the token is a fixed, hardcoded string that never expires and is shared by all clients. The server has no way to "invalidate" it since it isn't tracking active sessions, so calling a logout endpoint would have nothing real to revoke.
+
+In a production token-based system, logout would typically work by maintaining a server-side token blacklist or short token expiration (using JWTs with a refresh token flow), so logging out either deletes the session record, revokes the refresh token, or simply lets the short-lived access token expire on its own.
+
 ## Technologies Used
 - Python
 - FastAPI
@@ -57,3 +62,5 @@ This authentication setup uses a single hardcoded username, password, and token 
 docker compose up --build
 
 Open http://localhost:8000/docs.
+
+
